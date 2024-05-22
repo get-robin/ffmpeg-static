@@ -2,7 +2,7 @@
 
 sudo pip3 install meson
 
-sudo apt-get install build-essential curl tar pkg-config
+sudo apt-get install build-essential curl tar pkg-config ninja-build
 sudo apt-get -y --force-yes install \
   autoconf \
   automake \
