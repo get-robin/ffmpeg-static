@@ -182,12 +182,6 @@ download \
   "https://github.com/georgmartius/vid.stab/archive/"
 
 download \
-  "release-2.7.4.tar.gz" \
-  "zimg-release-2.7.4.tar.gz" \
-  "1757dcc11590ef3b5a56c701fd286345" \
-  "https://github.com/sekrit-twc/zimg/archive/"
-
-download \
   "v2.1.2.tar.gz" \
   "openjpeg-2.1.2.tar.gz" \
   "40a7bfdcc66280b3c1402a0eb1a27624" \
@@ -383,15 +377,6 @@ PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_
 make -j $jval
 make install
 
-echo "*** Building zimg ***"
-cd $BUILD_DIR/zimg-release-*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-./autogen.sh
-./configure --enable-static  --prefix=$TARGET_DIR --disable-shared
-sed -i 's/size_t/std::size_t/g' src/zimg/colorspace/matrix3.cpp
-make -j $jval
-make install
-
 echo "*** Building libwebp ***"
 cd $BUILD_DIR/libwebp*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
@@ -498,10 +483,10 @@ if [ "$platform" = "linux" ]; then
     --enable-libx264 \
     --enable-libx265 \
     --enable-libxvid \
-    --enable-libzimg \
     --enable-nonfree \
     --enable-openssl \
     --enable-librist \
+    --enable-librsvg \
     --enable-libsrt
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
@@ -538,10 +523,10 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libx264 \
     --enable-libx265 \
     --enable-libxvid \
-    --enable-libzimg \
     --enable-nonfree \
     --enable-openssl \
     --enable-librist \
+    --enable-librsvg \
     --enable-libsrt
 fi
 
