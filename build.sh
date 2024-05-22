@@ -441,6 +441,16 @@ sed -i 's/-lgcc_s/-lgcc_eh/g' srt.pc
 make
 make install
 
+echo "*** Building librsvg ***"
+cd $BUILD_DIR
+rm -rf librsvg
+git clone https://gitlab.gnome.org/GNOME/librsvg.git
+cd librsvg
+mkdir -p _build
+meson setup _build -Ddocs=enabled -Dintrospection=enabled -Dvala=enabled
+meson compile -C_ build
+meson install -C _build
+
 # FFMpeg
 echo "*** Building FFmpeg ***"
 cd $BUILD_DIR/FFmpeg*
