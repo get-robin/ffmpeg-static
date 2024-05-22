@@ -446,6 +446,9 @@ cd $BUILD_DIR
 rm -rf librsvg
 git clone https://gitlab.gnome.org/GNOME/librsvg.git
 cd librsvg
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
+cargo install cargo-c
 mkdir -p _build
 meson setup _build -Ddocs=enabled -Dintrospection=enabled -Dvala=enabled
 meson compile -C_ build
