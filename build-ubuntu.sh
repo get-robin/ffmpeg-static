@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install build-essential curl tar pkg-config meson
+sudo apt-get install build-essential curl tar pkg-config meson librsvg2-bin
 sudo apt-get -y --force-yes install \
   autoconf \
   automake \
