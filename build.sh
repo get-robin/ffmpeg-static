@@ -234,6 +234,12 @@ download \
   "40aedb499cb2b6f106d909d9d97f869a" \
   "https://github.com/libsdl-org/SDL/releases/download/release-2.0.22"
 
+download \
+  "libxml2-v2.7.8.tar.gz" \
+  "" \
+  "" \
+  "https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.7.8/"
+
 [ $download_only -eq 1 ] && exit 0
 
 TARGET_DIR_SED=$(echo $TARGET_DIR | awk '{gsub(/\//, "\\/"); print}')
@@ -458,6 +464,11 @@ cd $BUILD_DIR/pango-*
 make -j $jval
 make install
 
+echo "*** Building libxml2 ***"
+cd $BUILD_DIR/libxml2-*
+./configure --prefix=$TARGET_DIR --disable-shared --enable-static
+make -j $jval
+make install
 
 echo "*** Building librsvg ***"
 cd $BUILD_DIR/librsvg-*
