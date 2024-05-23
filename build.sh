@@ -127,12 +127,6 @@ download \
   "https://github.com/mstorsjo/fdk-aac/archive"
 
 download \
-  "harfbuzz-1.4.6.tar.bz2" \
-  "" \
-  "e246c08a3bac98e31e731b2a1bf97edf" \
-  "https://www.freedesktop.org/software/harfbuzz/release/"
-
-download \
   "fribidi-1.0.2.tar.bz2" \
   "" \
   "bd2eb2f3a01ba11a541153f505005a7b" \
@@ -293,13 +287,6 @@ cd $BUILD_DIR/fdk-aac*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 autoreconf -fiv
 [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --disable-shared
-make -j $jval
-make install
-
-echo "*** Building harfbuzz ***"
-cd $BUILD_DIR/harfbuzz-*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-./configure --prefix=$TARGET_DIR --disable-shared --enable-static
 make -j $jval
 make install
 
