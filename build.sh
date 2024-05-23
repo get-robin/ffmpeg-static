@@ -78,6 +78,19 @@ echo "#### FFmpeg static build ####"
 #this is our working directory
 cd $BUILD_DIR
 
+[ $is_x86 -eq 1 ] && download \
+  "yasm-1.3.0.tar.gz" \
+  "" \
+  "fc9e586751ff789b34b1f21d572d96af" \
+  "http://www.tortall.net/projects/yasm/releases/"
+
+[ $is_x86 -eq 1 ] && download \
+  "nasm-2.15.05.tar.bz2" \
+  "" \
+  "b8985eddf3a6b08fc246c14f5889147c" \
+  "https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/"
+
+
 download \
   "x264-stable.tar.gz" \
   "" \
@@ -117,7 +130,6 @@ if [ "$platform" = "linux" ]; then
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
     --enable-gpl \
-    --disable-x86asm \
     --enable-libx264
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
