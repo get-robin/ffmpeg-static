@@ -107,6 +107,25 @@ download \
 
 TARGET_DIR_SED=$(echo $TARGET_DIR | awk '{gsub(/\//, "\\/"); print}')
 
+if [ $is_x86 -eq 1 ]; then
+    echo "*** Building yasm ***"
+    cd $BUILD_DIR/yasm*
+    [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+    [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --bindir=$BIN_DIR
+    make -j $jval
+    make install
+fi
+
+if [ $is_x86 -eq 1 ]; then
+    echo "*** Building nasm ***"
+    cd $BUILD_DIR/nasm*
+    [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+    [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --bindir=$BIN_DIR
+    make -j $jval
+    make install
+fi
+
+
 echo "*** Building x264 ***"
 cd $BUILD_DIR/x264*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
