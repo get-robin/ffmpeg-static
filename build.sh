@@ -211,12 +211,6 @@ download \
   "https://github.com/xiph/speex/archive/"
 
 download \
-  "pango-1.40.14.tar.xz" \
-  "pango-1.40.14.tar.xz" \
-  "" \
-  "https://download.gnome.org/sources/pango/1.40/"
-
-download \
   "librsvg-2.36.4.tar.xz" \
   "" \
   "" \
@@ -450,12 +444,6 @@ cmake -DENABLE_APPS=OFF -DCMAKE_INSTALL_PREFIX=$TARGET_DIR -DENABLE_C_DEPS=ON -D
 sed -i 's/-lgcc_s/-lgcc_eh/g' haisrt.pc
 sed -i 's/-lgcc_s/-lgcc_eh/g' srt.pc
 make
-make install
-
-echo "*** Building pango ***"
-cd $BUILD_DIR/pango-*
-./configure --prefix=$TARGET_DIR --disable-shared --enable-static
-make -j $jval
 make install
 
 echo "*** Building librsvg ***"
