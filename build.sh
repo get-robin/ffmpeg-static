@@ -212,6 +212,12 @@ download \
   "https://github.com/xiph/speex/archive/"
 
 download \
+  "librsvg-2.55.2.tar.gz" \
+  "librsvg-2.55.2.tar.gz" \
+  "" \
+  "https://gitlab.gnome.org/GNOME/librsvg/-/archive/2.55.2/"
+
+download \
   "n6.0.tar.gz" \
   "ffmpeg6.0.tar.gz" \
   "586ca7cc091d26fd0a4c26308950ca51" \
