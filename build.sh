@@ -78,19 +78,6 @@ echo "#### FFmpeg static build ####"
 #this is our working directory
 cd $BUILD_DIR
 
-[ $is_x86 -eq 1 ] && download \
-  "yasm-1.3.0.tar.gz" \
-  "" \
-  "fc9e586751ff789b34b1f21d572d96af" \
-  "http://www.tortall.net/projects/yasm/releases/"
-
-[ $is_x86 -eq 1 ] && download \
-  "nasm-2.15.05.tar.bz2" \
-  "" \
-  "b8985eddf3a6b08fc246c14f5889147c" \
-  "https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/"
-
-
 download \
   "x264-stable.tar.gz" \
   "" \
@@ -107,29 +94,10 @@ download \
 
 TARGET_DIR_SED=$(echo $TARGET_DIR | awk '{gsub(/\//, "\\/"); print}')
 
-if [ $is_x86 -eq 1 ]; then
-    echo "*** Building yasm ***"
-    cd $BUILD_DIR/yasm*
-    [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-    [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --bindir=$BIN_DIR
-    make -j $jval
-    make install
-fi
-
-if [ $is_x86 -eq 1 ]; then
-    echo "*** Building nasm ***"
-    cd $BUILD_DIR/nasm*
-    [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-    [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --bindir=$BIN_DIR
-    make -j $jval
-    make install
-fi
-
-
 echo "*** Building x264 ***"
 cd $BUILD_DIR/x264*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-[ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --enable-static --disable-shared --disable-opencl --enable-pic --disable-asm
+[ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --enable-static --disable-shared --disable-opencl --enable-pic
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
