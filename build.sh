@@ -117,6 +117,7 @@ if [ "$platform" = "linux" ]; then
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
     --enable-gpl \
+    --disable-x86asm \
     --enable-libx264
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
