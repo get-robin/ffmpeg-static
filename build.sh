@@ -78,6 +78,12 @@ echo "#### FFmpeg static build ####"
 #this is our working directory
 cd $BUILD_DIR
 
+[ $is_x86 -eq 1 ] && download \
+  "nasm-2.15.05.tar.bz2" \
+  "" \
+  "b8985eddf3a6b08fc246c14f5889147c" \
+  "https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/"
+
 download \
   "x264-stable.tar.gz" \
   "" \
@@ -93,6 +99,15 @@ download \
 [ $download_only -eq 1 ] && exit 0
 
 TARGET_DIR_SED=$(echo $TARGET_DIR | awk '{gsub(/\//, "\\/"); print}')
+
+if [ $is_x86 -eq 1 ]; then
+    echo "*** Building nasm ***"
+    cd $BUILD_DIR/nasm*
+    [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+    [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --bindir=$BIN_DIR
+    make -j $jval
+    make install
+fi
 
 echo "*** Building x264 ***"
 cd $BUILD_DIR/x264*
