@@ -126,7 +126,6 @@ download \
   "223d5f579d29fb0d019a775da4e0e061" \
   "https://github.com/mstorsjo/fdk-aac/archive"
 
-# libass dependency
 download \
   "harfbuzz-1.4.6.tar.bz2" \
   "" \
@@ -212,10 +211,16 @@ download \
   "https://github.com/xiph/speex/archive/"
 
 download \
-  "librsvg-2.55.2.tar.gz" \
-  "librsvg-2.55.2.tar.gz" \
+  "pango-1.40.14.tar.xz" \
+  "pango-1.40.14.tar.xz" \
   "" \
-  "https://gitlab.gnome.org/GNOME/librsvg/-/archive/2.55.2/"
+  "https://download.gnome.org/sources/pango/1.40/"
+
+download \
+  "librsvg-2.36.4.tar.xz" \
+  "" \
+  "" \
+  "https://src.fedoraproject.org/repo/pkgs/librsvg2/librsvg-2.36.4.tar.xz/3c94524c8ccf668e30b236f409239f54/"
 
 download \
   "n6.0.tar.gz" \
@@ -447,18 +452,18 @@ sed -i 's/-lgcc_s/-lgcc_eh/g' srt.pc
 make
 make install
 
+echo "*** Building pango ***"
+cd $BUILD_DIR/pango-*
+./configure --prefix=$TARGET_DIR --disable-shared --enable-static
+make -j $jval
+make install
+
+
 echo "*** Building librsvg ***"
-cd $BUILD_DIR
-rm -rf librsvg
-git clone https://gitlab.gnome.org/GNOME/librsvg.git
-cd librsvg
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-. "$HOME/.cargo/env"
-cargo install cargo-c
-mkdir -p _build
-meson setup _build -Ddocs=enabled -Dintrospection=enabled -Dvala=enabled
-meson compile -C_ build
-meson install -C _build
+cd $BUILD_DIR/librsvg-*
+./configure --prefix=$TARGET_DIR --disable-shared --enable-static
+make -j $jval
+make install
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
