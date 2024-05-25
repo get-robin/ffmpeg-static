@@ -85,6 +85,18 @@ download \
   "https://code.videolan.org/videolan/x264/-/archive/stable/"
 
 download \
+  "lame-3.100.tar.gz" \
+  "" \
+  "" \
+  "http://downloads.sourceforge.net/project/lame/lame/3.100"
+
+download \
+  "librsvg-2.50.7.tar.gz" \
+  "" \
+  "" \
+  "https://gitlab.gnome.org/GNOME/librsvg/-/archive/2.50.7/"
+
+download \
   "n6.0.tar.gz" \
   "ffmpeg6.0.tar.gz" \
   "586ca7cc091d26fd0a4c26308950ca51" \
@@ -99,6 +111,22 @@ cd $BUILD_DIR/x264*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --enable-static --disable-shared --disable-opencl --enable-pic
 PATH="$BIN_DIR:$PATH" make -j $jval
+make install
+
+echo "*** Building mp3lame ***"
+cd $BUILD_DIR/lame*
+# The lame build script does not recognize aarch64, so need to set it manually
+uname -a | grep -q 'aarch64' && lame_build_target="--build=arm-linux" || lame_build_target=''
+[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+[ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --disable-nasm --disable-shared $lame_build_target
+make
+make install
+
+echo "*** Building librsvg ***"
+cd $BUILD_DIR/librsvg-*
+./autogen.sh --prefix=$TARGET_DIR --disable-shared --enable-static
+./configure
+make -j $jval
 make install
 
 # FFMpeg
@@ -117,6 +145,8 @@ if [ "$platform" = "linux" ]; then
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
     --enable-gpl \
+    --enable-libmp3lame \
+    --enable-librsvg \
     --enable-libx264
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
@@ -129,6 +159,8 @@ elif [ "$platform" = "darwin" ]; then
     --extra-ldexeflags="-Bstatic" \
     --bindir="$BIN_DIR" \
     --enable-gpl \
+    --enable-libmp3lame \
+    --enable-librsvg \
     --enable-libx264
 fi
 
