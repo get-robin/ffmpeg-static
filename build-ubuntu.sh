@@ -2,7 +2,7 @@
 
 sudo pip3 install meson
 
-sudo apt-get install build-essential curl tar pkg-config ninja-build
+sudo apt-get install build-essential curl tar pkg-config ninja-build gtk-doc-tools autopoint libgtk-3-dev gobject-introspection
 sudo apt-get -y --force-yes install \
   autoconf \
   automake \
@@ -31,6 +31,9 @@ sudo apt-get -y --force-yes install \
   pkg-config \
   texi2html \
   zlib1g-dev
+
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source $HOME/.cargo/env
 
 # For 12.04
 # libx265 requires cmake version >= 2.8.8
