@@ -33,6 +33,7 @@ sudo apt-get -y --force-yes install \
   texi2html \
   yasm \
   nasm \
+  libgdk-pixbuf2.0-dev \
   zlib1g-dev
 
 ln -s /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders /usr/local/bin/gdk-pixbuf-query-loaders

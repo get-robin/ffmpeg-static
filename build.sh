@@ -122,6 +122,8 @@ uname -a | grep -q 'aarch64' && lame_build_target="--build=arm-linux" || lame_bu
 make
 make install
 
+mv $BUILD_DIR/librsvg-* $BUILD_DIR/librsvg-2.0
+
 echo "*** Building librsvg ***"
 cd $BUILD_DIR/librsvg-*
 ./autogen.sh --prefix=$TARGET_DIR --disable-shared --enable-static
