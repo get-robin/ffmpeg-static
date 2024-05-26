@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install build-essential curl tar pkg-config gtk-doc-tools autopoint libgtk-3-dev libgirepository1.0-dev rust-all
+sudo apt-get install build-essential curl tar pkg-config gtk-doc-tools autopoint libgtk-3-dev libgirepository1.0-dev rust-all gettext
 sudo apt-get -y --force-yes install \
   autoconf \
   automake \
@@ -28,6 +28,8 @@ sudo apt-get -y --force-yes install \
   libxvidcore-dev \
   pkg-config \
   texi2html \
+  yasm \
+  nasm \
   zlib1g-dev
 
 ln -s /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders /usr/local/bin/gdk-pixbuf-query-loaders

@@ -81,13 +81,13 @@ cd $BUILD_DIR
 download \
   "x264-stable.tar.gz" \
   "" \
-  "nil" \
+  "83e260acbe4389b54fe08e0bdbf7cddb" \
   "https://code.videolan.org/videolan/x264/-/archive/stable/"
 
 download \
   "lame-3.100.tar.gz" \
   "" \
-  "" \
+  "4a2e1b351f3b01756497cfdaf6223c1c" \
   "http://downloads.sourceforge.net/project/lame/lame/3.100"
 
 download \
