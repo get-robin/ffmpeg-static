@@ -81,7 +81,7 @@ cd $BUILD_DIR
 download \
   "x264-stable.tar.gz" \
   "" \
-  "83e260acbe4389b54fe08e0bdbf7cddb" \
+  "91539513b13ffdc46947d6128407958e" \
   "https://code.videolan.org/videolan/x264/-/archive/stable/"
 
 download \
