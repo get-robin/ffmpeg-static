@@ -126,7 +126,7 @@ mv $BUILD_DIR/librsvg-* $BUILD_DIR/librsvg-2.0
 
 echo "*** Building librsvg ***"
 cd $BUILD_DIR/librsvg-*
-./autogen.sh --prefix=$TARGET_DIR --disable-shared --enable-static
+./autogen.sh --prefix=$TARGET_DIR --disable-shared --enable-static --disable-pixbuf-loader
 ./configure
 make -j $jval
 make install
