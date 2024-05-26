@@ -87,7 +87,7 @@ download \
 download \
   "lame-3.100.tar.gz" \
   "" \
-  "4a2e1b351f3b01756497cfdaf6223c1c" \
+  "83e260acbe4389b54fe08e0bdbf7cddb" \
   "http://downloads.sourceforge.net/project/lame/lame/3.100"
 
 download \
