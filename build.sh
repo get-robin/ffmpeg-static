@@ -91,12 +91,6 @@ download \
   "http://downloads.sourceforge.net/project/lame/lame/3.100"
 
 download \
-  "librsvg-2.50.7.tar.gz" \
-  "" \
-  "" \
-  "https://gitlab.gnome.org/GNOME/librsvg/-/archive/2.50.7/"
-
-download \
   "n6.0.tar.gz" \
   "ffmpeg6.0.tar.gz" \
   "586ca7cc091d26fd0a4c26308950ca51" \
@@ -120,15 +114,6 @@ uname -a | grep -q 'aarch64' && lame_build_target="--build=arm-linux" || lame_bu
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --disable-nasm --disable-shared $lame_build_target
 make
-make install
-
-mv $BUILD_DIR/librsvg-* $BUILD_DIR/librsvg-2.0
-
-echo "*** Building librsvg ***"
-cd $BUILD_DIR/librsvg-*
-./autogen.sh --prefix=$TARGET_DIR --disable-shared --enable-static --disable-pixbuf-loader
-./configure
-make -j $jval
 make install
 
 # FFMpeg
