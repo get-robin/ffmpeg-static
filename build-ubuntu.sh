@@ -26,6 +26,9 @@ sudo apt-get -y --force-yes install \
   libxcb-shm0-dev \
   libxcb-xfixes0-dev \
   libxvidcore-dev \
+  librsvg2-bin \
+  librsvg2-common \
+  librsvg2-dev \
   pkg-config \
   texi2html \
   yasm \
