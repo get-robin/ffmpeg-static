@@ -145,6 +145,12 @@ if [ "$platform" = "linux" ]; then
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
     --enable-gpl \
+    --enable-version3 \
+    --enable-nonfree \
+    --disable-runtime-cpudetect \
+    --disable-ffplay \
+    --disable-ffprobe \
+    --disable-doc \
     --enable-libmp3lame \
     --enable-librsvg \
     --enable-libx264
