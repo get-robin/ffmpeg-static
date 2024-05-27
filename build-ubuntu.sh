@@ -29,6 +29,7 @@ sudo apt-get -y --force-yes install \
   librsvg2-bin \
   librsvg2-common \
   librsvg2-dev \
+  libtool \
   meson \
   ninja \
   pkg-config \
