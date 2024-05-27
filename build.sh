@@ -97,6 +97,12 @@ download \
   "https://gitlab.gnome.org/GNOME/librsvg/-/archive/2.50.7/"
 
 download \
+  "gdk-pixbuf-2.42.0.tar.gz" \
+  "" \
+  "" \
+  "https://gitlab.gnome.org/GNOME/gdk-pixbuf/-/archive/2.42.0/"
+
+download \
   "n6.0.tar.gz" \
   "ffmpeg6.0.tar.gz" \
   "586ca7cc091d26fd0a4c26308950ca51" \
@@ -128,6 +134,13 @@ cd $BUILD_DIR/librsvg-*
 ./configure
 make -j $jval
 make install
+
+echo "*** Building pixbuf ***"
+cd $BUILD_DIR/gdk-pixbuf-*
+meson _build . --default-library=static --prefix=$TARGET_DIR --bindir="../bin/" --libdir="$TARGET_DIR/lib"
+cd _build
+ninja
+sudo ninja install
 
 # FFMpeg
 echo "*** Building FFmpeg ***"

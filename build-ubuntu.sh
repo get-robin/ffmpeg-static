@@ -29,6 +29,8 @@ sudo apt-get -y --force-yes install \
   librsvg2-bin \
   librsvg2-common \
   librsvg2-dev \
+  meson \
+  ninja \
   pkg-config \
   texi2html \
   yasm \
